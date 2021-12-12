@@ -1,6 +1,6 @@
 import './App.css';
 import * as ROUTES from './constants/routes';
-import { BrowserRouter as Router, Switch } from 'react-router-dom';
+import { HashRouter as Router, Switch } from 'react-router-dom';
 import { lazy, Suspense, useState, useEffect } from 'react';
 
 import ProtectedRoutes from './helpers/protectedRoutes';
