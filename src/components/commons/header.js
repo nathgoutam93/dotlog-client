@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import locale from 'date-fns/locale/en-US';
 import { formatDistanceToNowStrict } from 'date-fns';
 import { Link } from 'react-router-dom';
@@ -46,12 +46,6 @@ export default function Header({
   userName,
   timeStamp,
 }) {
-  const [load, setLoad] = useState(false);
-
-  const handleLoad = () => {
-    setLoad(true);
-  };
-
   return (
     <div className="flex p-2 items-center">
       <Link to={`${ROUTES.PROFILE}/${userId}`}>
@@ -59,7 +53,6 @@ export default function Header({
           className="w-8 h-8 object-cover rounded-full cursor-pointer"
           src={userImg}
           alt=""
-          onLoad={handleLoad}
         />
       </Link>
 

@@ -1,10 +1,9 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import * as ROUTES from '../../constants/routes';
 import { Link } from 'react-router-dom';
 import Header from './header';
-import Skeleton from '../commons/Skeleton';
+import Skeleton from './Skeleton';
 import { useIntersection } from '../../hooks/intersectionObserver';
-import { useEffect } from 'react/cjs/react.development';
 import { useFirestore } from '../../context/firestoreContext';
 import { useAuth } from '../../context/authContext';
 

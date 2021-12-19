@@ -37,49 +37,62 @@ export default function Login() {
   }, []);
 
   return (
-    <div className="flex flex-col h-full w-4/5 items-center justify-center">
-      <div className="flex flex-col items-center p-4 border w-full border-gray-700 mb-4 rounded">
-        <h1 className="flex justify-center w-full text-white font-bold mb-2">
-          dotlog
-        </h1>
-
+    <div className="w-full h-full p-4 flex flex-col justify-center items-center">
+      <span className="text-2xl dark:text-light">Login to your account</span>
+      <div className="mt-4 rounded-lg text-left bg-black dark:bg-white">
+        <div className="h-2 bg-indigo-400 rounded-t-md"></div>
         {error && <p className="mb-4 text-xs text-red-600">{error}</p>}
-
-        <form onSubmit={handleLogin} method="POST">
+        <form className="px-8 py-6" method="Post" onSubmit={handleLogin}>
+          <label className="text-light dark:text-dark label block font-semibold">
+            Email address
+          </label>
           <input
-            aria-label="enter your email address"
-            type="text"
-            placeholder="Email address"
-            className="bg-transparent text-sm text-white w-full mr-3 py-5 px-4 h2 border border-gray-700 rounded mb-2"
+            type="email"
+            className="w-full h-5 mt-2 px-3 py-5 border rounded-md 
+            focus:outline-none focus:ring-1 focus:ring-indigo-400"
+            placeholder="Email"
             onChange={({ target }) => setEmailAddress(target.value)}
             value={emailAddress}
           />
+
+          <label className="text-light dark:text-dark label mt-3 block font-semibold">
+            Password
+          </label>
           <input
-            aria-label="enter your password"
             type="password"
+            className="w-full h-5 mt-2 px-3 py-5 border rounded-md 
+            focus:outline-none focus:ring-1 focus:ring-indigo-400"
             placeholder="Password"
-            className="bg-transparent text-sm text-white w-full mr-3 py-5 px-4 h2 border border-gray-700 rounded mb-2"
             onChange={({ target }) => setPassword(target.value)}
             value={password}
           />
-          <button
-            disabled={isInvalid || loading}
-            type="submit"
-            className={`bg-gray-700 text-white w-full rounded h-8 font-bold ${
-              isInvalid && 'opacity-50'
-            }`}
-          >
-            Log In
-          </button>
+          <div className="flex items-center mt-4">
+            <button
+              disabled={isInvalid || loading}
+              type="submit"
+              className="px-4 py-2 bg-gradient-to-r from-green-400 to-blue-500 hover:from-pink-500 hover:to-yellow-500 rounded-md"
+            >
+              Log In
+            </button>
+            <a
+              className="mx-3 text-sm text-light dark:text-dark hover:underline"
+              href=""
+            >
+              Forgot password?
+            </a>
+          </div>
         </form>
-      </div>
-      <div className="flex justify-center items-center flex-col w-full p-4 border border-gray-700 rounded">
-        <p className="text-sm text-white">
-          Don't have an account?{' '}
-          <Link to={ROUTES.SIGN_UP} className="font-bold text-white">
-            Sign up
-          </Link>
-        </p>
+        <div className="p-2 flex justify-center items-center">
+          <p className="text-sm text-light dark:text-dark">
+            Don't have an account?{' '}
+            <Link
+              to={ROUTES.SIGN_UP}
+              className="font-bold text-light dark:text-dark"
+            >
+              Sign up
+            </Link>
+          </p>
+        </div>
       </div>
     </div>
   );

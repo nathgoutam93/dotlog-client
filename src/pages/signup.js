@@ -53,64 +53,79 @@ export default function SignUp() {
   }, []);
 
   return (
-    <div className="flex flex-col h-full w-full items-center justify-center">
-      <div className="flex flex-col w-4/5 items-center p-4 border border-gray-700 mb-4 rounded">
-        <h1 className="flex justify-center w-full font-bold text-white mb-2">
-          dotlog
-        </h1>
-
+    <div className="w-full h-full p-4 flex flex-col justify-center items-center">
+      <span className="text-2xl text-dark dark:text-light">
+        Create new account
+      </span>
+      <div className="mt-4 rounded-lg text-left bg-black dark:bg-white">
+        <div className="h-2 bg-indigo-400 rounded-t-md"></div>
         {error && <p className="mb-4 text-xs text-red-600">{error}</p>}
-
-        <form onSubmit={handleSignUp} method="POST">
+        <form className="px-8 py-6" method="Post" onSubmit={handleSignUp}>
+          <label className="label text-light dark:text-dark block font-semibold">
+            Username
+          </label>
           <input
-            aria-label="enter a username"
             type="text"
-            placeholder="username"
-            className="bg-transparent text-sm text-white w-full mr-3 py-5 px-4 h2 border border-gray-700 rounded mb-2"
+            className="w-full h-5 mt-2 px-3 py-5 border rounded-md 
+          focus:outline-none focus:ring-1 focus:ring-indigo-400"
+            placeholder="Username"
             onChange={({ target }) => setUsername(target.value)}
             value={username}
           />
+
+          <label className="label text-light dark:text-dark block font-semibold">
+            Email address
+          </label>
           <input
-            aria-label="enter your email address"
-            type="text"
-            placeholder="Email address"
-            className="bg-transparent text-sm text-white w-full mr-3 py-5 px-4 h2 border border-gray-700 rounded mb-2"
+            type="email"
+            className="w-full h-5 mt-2 px-3 py-5 border rounded-md 
+          focus:outline-none focus:ring-1 focus:ring-indigo-400"
+            placeholder="Email"
             onChange={({ target }) => setEmailAddress(target.value)}
             value={emailAddress}
           />
+
+          <label className="label text-light dark:text-dark mt-3 block font-semibold">
+            Password
+          </label>
           <input
-            aria-label="enter your password"
             type="password"
+            className="w-full h-5 mt-2 px-3 py-5 border rounded-md 
+          focus:outline-none focus:ring-1 focus:ring-indigo-400"
             placeholder="Password"
-            className="bg-transparent text-sm text-white w-full mr-3 py-5 px-4 h2 border border-gray-700 rounded mb-2"
             onChange={({ target }) => setPassword(target.value)}
             value={password}
           />
+          <label className="label text-light dark:text-dark mt-3 block font-semibold">
+            Password Confirmation
+          </label>
           <input
-            aria-label="confirm your password"
             type="password"
-            placeholder="confirm Password"
-            className="bg-transparent text-sm text-white w-full mr-3 py-5 px-4 h2 border border-gray-700 rounded mb-2"
+            className="w-full h-5 mt-2 px-3 py-5 border rounded-md 
+          focus:outline-none focus:ring-1 focus:ring-indigo-400"
+            placeholder="Confirm Password"
             onChange={({ target }) => setPasswordConfirm(target.value)}
             value={passwordConfirmation}
           />
-
           <button
             disabled={isInvalid || loading}
             type="submit"
-            className="bg-gray-700 text-white w-full rounded h-8 font-bold"
+            className="w-full mt-4 px-4 py-2 bg-gradient-to-r from-green-400 to-blue-500 hover:from-pink-500 hover:to-yellow-500 rounded-md"
           >
-            Sign Up
+            Sign In
           </button>
         </form>
-      </div>
-      <div className="flex justify-center items-center flex-col w-4/5 p-4 border border-gray-700 rounded">
-        <p className="text-sm text-white">
-          already have an account?{' '}
-          <Link to={ROUTES.LOGIN} className="font-bold text-white">
-            Log In
-          </Link>
-        </p>
+        <div className="p-2 flex justify-center items-center">
+          <p className="text-sm text-light dark:text-dark">
+            already have an account?{' '}
+            <Link
+              to={ROUTES.LOGIN}
+              className="font-bold text-light dark:text-dark"
+            >
+              Log In
+            </Link>
+          </p>
+        </div>
       </div>
     </div>
   );
