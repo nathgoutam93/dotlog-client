@@ -1,4 +1,5 @@
-{ "homepage": "http://gitname.github.io/dotlog-client/",
+{
+  "homepage": "http://gitname.github.io/dotlog-client/",
   "name": "dotlog",
   "version": "0.1.0",
   "private": true,

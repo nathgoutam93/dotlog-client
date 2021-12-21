@@ -2,7 +2,7 @@ import { initializeApp } from 'firebase/app';
 import { getAuth } from 'firebase/auth';
 import { getStorage } from 'firebase/storage';
 import { getFirestore } from 'firebase/firestore';
-const firebaseConfig = require('../firebaseConfig');
+import firebaseConfig from '../firebaseConfig';
 
 const DOTLOG = initializeApp(firebaseConfig);
 
