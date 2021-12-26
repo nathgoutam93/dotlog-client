@@ -3,7 +3,7 @@ import { Link, Route, Switch, useHistory, useLocation } from 'react-router-dom';
 import * as ROUTES from '../constants/routes';
 import { useAuth } from '../context/authContext';
 
-export default function Header({ show }) {
+export default function Header() {
   const { currentUser, logOut } = useAuth();
   const history = useHistory();
   const location = useLocation();
@@ -37,9 +37,7 @@ export default function Header({ show }) {
     <>
       {currentUser && (
         <div
-          className={`sticky ${
-            show ? `top-0` : `-top-20`
-          } flex py-4 px-2 w-full items-center bg-post-light dark:bg-post-dark`}
+          className="sticky top-0 flex py-4 px-2 w-full items-center backdrop-filter backdrop-blur-lg bg-post-light bg-opacity-5"
         >
           {location.pathname === ROUTES.DASHBOARD ? (
             <p className="mx-2 text-base font-bold dark:text-white">Home</p>

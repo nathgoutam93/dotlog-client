@@ -12,7 +12,7 @@ export default function Navbar({ show }) {
         <nav
           className={`fixed ${
             show ? 'bottom-2' : '-bottom-20'
-          } mx-5 my-2 p-2 flex items-center justify-center bg-gray-900 rounded-3xl z-50`}
+          } mx-5 my-2 p-2 flex items-center justify-center rounded-3xl z-50 bg-dark`}
         >
           <NavLink to={ROUTES.DASHBOARD} className="text-gray-600" exact>
             <svg

@@ -52,7 +52,7 @@ function App() {
       <FirestoreProvider>
         <Router>
           <div className="flex flex-col items-center h-screen w-full font-sans lg:w-2/5">
-            <Header show={show} />
+            <Header/>
             <Navbar show={show} />
 
             <Suspense
