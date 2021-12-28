@@ -10,6 +10,7 @@ import { AuthProvider } from './context/authContext';
 import { FirestoreProvider } from './context/firestoreContext';
 import Header from './components/header';
 
+const ForgotPassword = lazy(() => import('./pages/forgotPassword'));
 const Login = lazy(() => import('./pages/Login'));
 const SignUp = lazy(() => import('./pages/signup'));
 const UpdateProfile = lazy(() => import('./pages/updateProfile'));
@@ -75,6 +76,13 @@ function App() {
                   path={ROUTES.SIGN_UP}
                 >
                   <SignUp />
+                </IsUserLoggedIn>
+
+                <IsUserLoggedIn
+                  loggedInpath={ROUTES.DASHBOARD}
+                  path={ROUTES.FORGOT_PASSWORD}
+                >
+                  <ForgotPassword />
                 </IsUserLoggedIn>
 
                 <ProtectedRoutes path={ROUTES.UPDATE_PROFILE}>

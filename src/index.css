@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 @layer utilities {
-  .active {
+  .activePage {
     color: #fff;
   }
   .activeTab::after {

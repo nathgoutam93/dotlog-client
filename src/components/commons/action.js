@@ -33,7 +33,7 @@ export default function Action({ post }) {
         setPostLiked(true);
       }
     });
-  }, []);
+  }, [isLiked,post,userData]);
 
   return (
     <div className="flex items-center justify-around">

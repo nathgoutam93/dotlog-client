@@ -40,11 +40,13 @@ export default function SignUp() {
         setPassword('');
         setPasswordConfirm('');
         setError(error.message);
+        setLoading(false);
       }
 
       setLoading(false);
     } else {
       setError('Password do not match');
+      setLoading(false);
     }
   };
 

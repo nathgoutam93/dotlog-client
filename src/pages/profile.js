@@ -19,7 +19,7 @@ export default function Profile() {
 
   const [user, setUser] = useState(null);
   const [following, setFollowing] = useState(null);
-  const { path, url } = useRouteMatch();
+  const { path } = useRouteMatch();
   const [feeds, setFeeds] = useState([]);
 
   const handleFollow = async () => {

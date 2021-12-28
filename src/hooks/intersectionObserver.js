@@ -41,5 +41,5 @@ export function useIntersection(elem, callback) {
         observer.unobserve(target);
       };
     }
-  }, []);
+  }, [elem, callback]);
 }

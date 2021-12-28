@@ -146,7 +146,6 @@ export default function Header() {
                 />
               </svg>
             </Route>
-            <span className="flex-1"></span>
           </Switch>
 
           <svg

@@ -33,7 +33,7 @@ export default function Post({ post }) {
     } else {
       setUser(userData);
     }
-  }, [currentUser, post]);
+  }, [currentUser, post, userData, getUserDoc]);
 
   return (
     <>

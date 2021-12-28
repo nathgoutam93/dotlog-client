@@ -29,6 +29,7 @@ export default function Login() {
       setEmailAddress('');
       setPassword('');
       setError(error.message);
+      setLoading(false);
     }
   };
 
@@ -74,12 +75,12 @@ export default function Login() {
             >
               Log In
             </button>
-            <a
+            <Link to={ROUTES.FORGOT_PASSWORD}
               className="mx-3 text-sm text-light dark:text-dark hover:underline"
               href=""
             >
               Forgot password?
-            </a>
+            </Link>
           </div>
         </form>
         <div className="p-2 flex justify-center items-center">

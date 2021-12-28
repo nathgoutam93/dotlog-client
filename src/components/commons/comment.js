@@ -32,7 +32,7 @@ export default function Comment({ comment }) {
     } else {
       setUser(userData);
     }
-  }, [currentUser, comment]);
+  }, [currentUser, comment, getUserDoc, userData]);
 
   return (
     <>

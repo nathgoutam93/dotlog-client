@@ -10,3 +10,4 @@ export const NOTIFICATION = '/notifications';
 export const NEW_POST = '/newPost';
 export const NEW_PROJECT = '/newProject';
 export const PROJECT = '/Project';
+export const FORGOT_PASSWORD = '/forgotPassword';

@@ -5,6 +5,7 @@ import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   updateProfile,
+  sendPasswordResetEmail,
   signOut,
 } from 'firebase/auth';
 
@@ -21,6 +22,18 @@ export function AuthProvider({ children }) {
     return createUserWithEmailAndPassword(auth, email, password);
   }
 
+  function resetPassword(email){
+    return sendPasswordResetEmail(auth, email);
+  }
+
+  function login(email, password) {
+    return signInWithEmailAndPassword(auth, email, password);
+  }
+
+  function logOut() {
+    return signOut(auth);
+  }
+
   function updateDisplayName(username) {
     return updateProfile(currentUser, {
       displayName: username,
@@ -31,14 +44,6 @@ export function AuthProvider({ children }) {
     return updateProfile(currentUser, {
       photoURL: imgSrc,
     });
-  }
-
-  function login(email, password) {
-    return signInWithEmailAndPassword(auth, email, password);
-  }
-
-  function logOut() {
-    return signOut(auth);
   }
 
   useEffect(() => {
@@ -56,6 +61,7 @@ export function AuthProvider({ children }) {
     updateDisplayName,
     updatePhotoURL,
     logOut,
+    resetPassword,
   };
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;

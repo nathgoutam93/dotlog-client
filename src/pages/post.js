@@ -25,16 +25,14 @@ export default function PostView() {
       setPost(doc.data());
     });
 
-    return () => {
-      unsubPost();
-    };
-  }, []);
-
-  useEffect(() => {
     getComments(postId).then((docs) => {
       setComments(docs);
     });
-  }, [post]);
+
+    return () => {
+      unsubPost();
+    };
+  }, [postId, getComments]);
 
   return (
     <>

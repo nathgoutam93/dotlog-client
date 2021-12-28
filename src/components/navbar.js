@@ -14,7 +14,7 @@ export default function Navbar({ show }) {
             show ? 'bottom-2' : '-bottom-20'
           } mx-5 my-2 p-2 flex items-center justify-center rounded-3xl z-50 bg-dark`}
         >
-          <NavLink to={ROUTES.DASHBOARD} className="text-gray-600" exact>
+          <NavLink activeClassName={"activePage"} to={ROUTES.DASHBOARD} className="text-gray-600" exact>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               className="h-12 w-12 mr-4"
@@ -25,7 +25,7 @@ export default function Navbar({ show }) {
             </svg>
           </NavLink>
 
-          <NavLink to={ROUTES.PROJECTS} className="text-gray-600">
+          <NavLink activeClassName={"activePage"} to={ROUTES.PROJECTS} className="text-gray-600">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               className="h-12 w-12 mr-4 "
@@ -42,7 +42,7 @@ export default function Navbar({ show }) {
             </svg>
           </NavLink>
 
-          <NavLink to={ROUTES.NEW_POST} className="text-gray-600">
+          <NavLink activeClassName={"activePage"} to={ROUTES.NEW_POST} className="text-gray-600">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               className="h-12 w-12 mr-4"
@@ -59,7 +59,7 @@ export default function Navbar({ show }) {
             </svg>
           </NavLink>
 
-          <NavLink to={ROUTES.NOTIFICATION} className="text-gray-600">
+          <NavLink activeClassName={"activePage"} to={ROUTES.NOTIFICATION} className="text-gray-600">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               className="h-12 w-12 mr-4 "
