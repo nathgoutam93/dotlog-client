@@ -4,7 +4,6 @@ import { Link, NavLink, Route, Switch, useRouteMatch } from 'react-router-dom';
 import { lazy, Suspense } from 'react';
 import * as ROUTES from '../constants/routes';
 import { useFirestore } from '../context/firestoreContext';
-import { useAuth } from '../context/authContext';
 import { db } from '../lib/firebase';
 import { onSnapshot, doc } from '@firebase/firestore';
 import Chips from '../components/commons/Chips';
@@ -13,7 +12,6 @@ const Timeline = lazy(() => import('../components/timeline'));
 
 export default function Profile() {
   const { userId } = useParams();
-  const { currentUser } = useAuth();
   const { userData, userPosts, getUserPosts, isFollowing, follow, unfollow } =
     useFirestore();
 
@@ -24,18 +22,18 @@ export default function Profile() {
 
   const handleFollow = async () => {
     if (following) {
-      await unfollow(currentUser.uid, userId, following);
+      await unfollow(userData.userId, userId, following);
     } else {
-      await follow(currentUser.uid, userId);
+      await follow(userData.userId, userId);
     }
 
-    isFollowing(currentUser.uid, user.userId).then((docId) => {
+    isFollowing(userData.userId, user.userId).then((docId) => {
       setFollowing(docId);
     });
   };
 
   useEffect(() => {
-    if (currentUser.uid !== userId) {
+    if (userData.userId !== userId) {
       const unsubUser = onSnapshot(doc(db, 'users', `${userId}`), (doc) => {
         setUser(doc.data());
       });
@@ -46,30 +44,30 @@ export default function Profile() {
     } else {
       setUser(userData);
     }
-  }, [userId, currentUser, userData]);
+  }, [userId, userData]);
 
   useEffect(() => {
     if (user) {
-      if (user.userId === currentUser.uid) {
+      if (user.userId === userData.userId) {
         setFeeds(userPosts);
       } else {
         getUserPosts(user.userId).then((posts) => {
           setFeeds(posts);
         });
 
-        isFollowing(currentUser.uid, user.userId).then((docId) => {
+        isFollowing(userData.userId, user.userId).then((docId) => {
           setFollowing(docId);
         });
       }
     }
-  }, [user, currentUser, getUserPosts, isFollowing, userPosts]);
+  }, [userData, user, getUserPosts, isFollowing, userPosts]);
 
   return (
     <>
       {user && (
         <div className="w-full h-full">
           <div className="p-4">
-            <Avatar imgSrc={user.imgSrc} />
+            <Avatar imgSrc={user.imgSrc} username={userData.username}/>
             <div className="flex items-center">
               <label className="mr-2 text-lg dark:text-white">
                 {user.fullName}
@@ -77,7 +75,7 @@ export default function Profile() {
               <label className="flex-1 text-base text-gray-500">
                 @{user.username}
               </label>
-              {user.userId === currentUser.uid ? (
+              {user.userId === userData.userId ? (
                 <Link
                   to={ROUTES.UPDATE_PROFILE}
                   className="px-2 py-1 border-black rounded-full dark:text-white border dark:border-white bg-light dark:bg-dark"

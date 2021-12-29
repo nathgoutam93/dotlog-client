@@ -11,7 +11,7 @@ import Avatar from '../components/commons/avatar';
 
 export default function UpdateProfile() {
   const history = useHistory();
-  const { currentUser, updatePhotoURL } = useAuth();
+  const { currentUser } = useAuth();
   const { storage, userData, updateProfile } = useFirestore();
 
   const [user, setUser] = useState(null);
@@ -66,8 +66,6 @@ export default function UpdateProfile() {
         () => {
           getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
             try {
-              updatePhotoURL(downloadURL);
-
               updateProfile(currentUser.uid, {
                 userId: currentUser.uid,
                 fullName: fullName,
@@ -91,7 +89,7 @@ export default function UpdateProfile() {
           about: about,
           interests: interests,
         }).then(() => {
-          history.push(`${ROUTES.DASHBOARD}/${currentUser.uid}`);
+          history.push(`${ROUTES.PROFILE}/${currentUser.uid}`);
         });
       } catch (error) {
         console.log(error.message);
@@ -147,7 +145,7 @@ export default function UpdateProfile() {
           className="relative h-32 w-32 rounded-full cursor-pointer"
           onClick={handleClick}
         >
-          <Avatar imgSrc={imgSrc} />
+          <Avatar imgSrc={imgSrc} username={userData.username}/>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             className="absolute bottom-3 right-1 h-6 w-6 dark:text-white"

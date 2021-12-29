@@ -27,12 +27,14 @@ export default function Action({ post }) {
   const handleShare = () => {};
 
   useEffect(() => {
-    isLiked(post.postId, userData.userId).then((doc) => {
-      setLikeDoc(doc);
-      if (doc) {
-        setPostLiked(true);
-      }
-    });
+    if(userData){
+        isLiked(post.postId, userData.userId).then((doc) => {
+        setLikeDoc(doc);
+        if (doc) {
+          setPostLiked(true);
+        }
+      });
+    }
   }, [isLiked,post,userData]);
 
   return (

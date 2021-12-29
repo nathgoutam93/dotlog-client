@@ -131,6 +131,7 @@ export default function PostUpload() {
           className="w-8 h-8 object-cover mr-3 rounded-full cursor-pointer"
           src={userData.imgSrc}
           alt=""
+          onError={(e)=>{e.target.onerror = null; e.target.src=`https://avatars.dicebear.com/api/initials/${userData.username}.svg`}}
         />
 
         <div className="flex flex-col w-full">

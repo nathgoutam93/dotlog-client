@@ -4,7 +4,6 @@ import {
   onAuthStateChanged,
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
-  updateProfile,
   sendPasswordResetEmail,
   signOut,
 } from 'firebase/auth';
@@ -34,18 +33,6 @@ export function AuthProvider({ children }) {
     return signOut(auth);
   }
 
-  function updateDisplayName(username) {
-    return updateProfile(currentUser, {
-      displayName: username,
-    });
-  }
-
-  function updatePhotoURL(imgSrc) {
-    return updateProfile(currentUser, {
-      photoURL: imgSrc,
-    });
-  }
-
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       setCurrentUser(user);
@@ -58,8 +45,6 @@ export function AuthProvider({ children }) {
     currentUser,
     signup,
     login,
-    updateDisplayName,
-    updatePhotoURL,
     logOut,
     resetPassword,
   };

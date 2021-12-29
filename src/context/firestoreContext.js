@@ -45,6 +45,8 @@ export function FirestoreProvider({ children }) {
       return () => {
         unsubUser();
       };
+    }else{
+      setUserData(null)
     }
   }, [currentUser]);
 
@@ -101,7 +103,7 @@ export function FirestoreProvider({ children }) {
       imgSrc: '',
       about: '',
       interests: [],
-      followigCount: 0,
+      followingCount: 0,
       followerCount: 0,
       email: emailAddress.toLowerCase(),
       dateCreated: serverTimestamp(),

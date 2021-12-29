@@ -61,7 +61,7 @@ export default function ForgotPassword() {
                 Reset Password
             </button>
         </form>
-        <div className="p-2 flex justify-center items-center">
+        <div className="p-2 flex justify-around items-center">
             <Link
                 to={ROUTES.LOGIN}
                 className="font-bold text-light dark:text-dark"

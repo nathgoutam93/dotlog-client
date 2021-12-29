@@ -20,6 +20,7 @@
   },
   "scripts": {
     "start:prod": "serve -s build",
+    "emulators": "firebase emulators:start --project demo-test --export-on-exit=./savedData",
     "start": "craco start",
     "build": "craco build",
     "test": "craco test",

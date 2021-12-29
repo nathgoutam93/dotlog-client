@@ -72,7 +72,7 @@ export default function Gif({ callback }) {
         </div>
       )}
       <div className="w-full h-3/5 overflow-y-scroll">
-        <div class="flex flex-wrap justify-around ">
+        <div className="flex flex-wrap justify-around ">
           {gifs.length > 0
             ? gifs.map((gif) => {
                 return (

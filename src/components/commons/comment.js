@@ -5,11 +5,9 @@ import Header from './header';
 import Skeleton from './Skeleton';
 import { useIntersection } from '../../hooks/intersectionObserver';
 import { useFirestore } from '../../context/firestoreContext';
-import { useAuth } from '../../context/authContext';
 
 export default function Comment({ comment }) {
   const imgRef = useRef(null);
-  const { currentUser } = useAuth();
   const { userData, getUserDoc } = useFirestore();
 
   const [user, setUser] = useState(null);
@@ -25,14 +23,14 @@ export default function Comment({ comment }) {
   };
 
   useEffect(() => {
-    if (currentUser.uid !== comment.userId) {
+    if (userData.userId !== comment.userId) {
       getUserDoc(comment.userId).then((doc) => {
         setUser(doc);
       });
     } else {
       setUser(userData);
     }
-  }, [currentUser, comment, getUserDoc, userData]);
+  }, [comment, getUserDoc, userData]);
 
   return (
     <>

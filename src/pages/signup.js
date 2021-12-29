@@ -7,7 +7,7 @@ import { useFirestore } from '../context/firestoreContext';
 
 export default function SignUp() {
   const history = useHistory();
-  const { signup, updateDisplayName } = useAuth();
+  const { signup } = useAuth();
   const { createUser } = useFirestore();
 
   const [username, setUsername] = useState('');
@@ -24,14 +24,15 @@ export default function SignUp() {
     event.preventDefault();
 
     if (passwordConfirmed) {
+
       try {
         setError('');
         setLoading(true);
 
         signup(emailAddress, password).then((userCredential) => {
           const user = userCredential.user;
-          updateDisplayName(username);
           createUser(user.uid, username, emailAddress).then(() => {
+            setLoading(false);
             history.push(ROUTES.UPDATE_PROFILE);
           });
         });
@@ -43,10 +44,8 @@ export default function SignUp() {
         setLoading(false);
       }
 
-      setLoading(false);
     } else {
       setError('Password do not match');
-      setLoading(false);
     }
   };
 

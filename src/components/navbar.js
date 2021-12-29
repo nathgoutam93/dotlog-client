@@ -1,14 +1,14 @@
 import React from 'react';
 import * as ROUTES from '../constants/routes';
 import { Link, NavLink } from 'react-router-dom';
-import { useAuth } from '../context/authContext';
+import { useFirestore } from '../context/firestoreContext'
 
 export default function Navbar({ show }) {
-  const { currentUser } = useAuth();
+  const { userData } = useFirestore()
 
   return (
     <>
-      {currentUser && (
+      {userData && (
         <nav
           className={`fixed ${
             show ? 'bottom-2' : '-bottom-20'
@@ -76,11 +76,12 @@ export default function Navbar({ show }) {
             </svg>
           </NavLink>
 
-          <Link to={`${ROUTES.PROFILE}/${currentUser.uid}`}>
+          <Link to={`${ROUTES.PROFILE}/${userData.userId}`}>
             <img
-              src={currentUser.photoURL}
+              src={userData.imgSrc}
               className="w-12 h-12 object-cover rounded-full"
               alt=""
+              onError={(e)=>{e.target.onerror = null; e.target.src=`https://avatars.dicebear.com/api/initials/${userData.username}.svg`}}
             />
           </Link>
         </nav>
