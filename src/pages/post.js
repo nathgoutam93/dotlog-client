@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router';
-import Reply from '../components/commons/reply';
+import Reply from '../components/post/reply';
 import Post from '../components/post/index';
 import { useFirestore } from '../context/firestoreContext';
-import Comment from '../components/commons/comment';
+import Comment from '../components/post/comment';
 import { onSnapshot, doc } from '@firebase/firestore';
 import { db } from '../lib/firebase';
 

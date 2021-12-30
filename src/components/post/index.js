@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react';
 import * as ROUTES from '../../constants/routes';
 import { Link } from 'react-router-dom';
-import Header from '../commons/header';
-import Action from '../commons/action';
+import Header from './header';
+import Action from './action';
 import { useIntersection } from '../../hooks/intersectionObserver';
 import Skeleton from '../commons/Skeleton';
 import { useFirestore } from '../../context/firestoreContext';

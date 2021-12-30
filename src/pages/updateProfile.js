@@ -100,10 +100,6 @@ export default function UpdateProfile() {
   };
 
   useEffect(() => {
-    document.title = 'updateProfile - Dotlog';
-  }, []);
-
-  useEffect(() => {
     if (currentUser) {
       setUser(userData);
     }

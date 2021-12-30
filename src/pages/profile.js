@@ -8,7 +8,7 @@ import { db } from '../lib/firebase';
 import { onSnapshot, doc } from '@firebase/firestore';
 import Chips from '../components/commons/Chips';
 import Avatar from '../components/commons/avatar';
-const Timeline = lazy(() => import('../components/timeline'));
+const Timeline = lazy(() => import('../components/Timelines/timeline'));
 
 export default function Profile() {
   const { userId } = useParams();

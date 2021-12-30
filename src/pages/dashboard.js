@@ -1,5 +1,5 @@
 import React from 'react';
-import Timeline from '../components/timeline';
+import Timeline from '../components/Timelines/timeline';
 import { useAuth } from '../context/authContext';
 import { useFirestore } from '../context/firestoreContext';
 

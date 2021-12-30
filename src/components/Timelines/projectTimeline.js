@@ -1,5 +1,5 @@
 import React from 'react';
-import Post from './project/Post/index';
+import Post from '../project/Post/index';
 import * as Fake from '../seed';
 
 export default function Explore() {

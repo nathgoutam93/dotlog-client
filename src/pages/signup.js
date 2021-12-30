@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { useHistory } from 'react-router';
 import { Link } from 'react-router-dom';
 import * as ROUTES from '../constants/routes';
@@ -20,7 +20,7 @@ export default function SignUp() {
   const passwordConfirmed = password === passwordConfirmation;
   const [loading, setLoading] = useState();
 
-  const handleSignUp = async (event) => {
+  const handleSignUp = (event) => {
     event.preventDefault();
 
     if (passwordConfirmed) {
@@ -29,12 +29,14 @@ export default function SignUp() {
         setError('');
         setLoading(true);
 
-        signup(emailAddress, password).then((userCredential) => {
+        signup(emailAddress, password)
+        .then((userCredential) => {
           const user = userCredential.user;
-          createUser(user.uid, username, emailAddress).then(() => {
-            setLoading(false);
-            history.push(ROUTES.UPDATE_PROFILE);
-          });
+          return createUser(user.uid, username, emailAddress)
+        })
+        .then(() => {
+          setLoading(false);
+          history.push(ROUTES.UPDATE_PROFILE);
         });
       } catch (error) {
         setEmailAddress('');
@@ -48,10 +50,6 @@ export default function SignUp() {
       setError('Password do not match');
     }
   };
-
-  useEffect(() => {
-    document.title = 'Sign Up - Dotlog';
-  }, []);
 
   return (
     <div className="w-full h-full p-4 flex flex-col justify-center items-center">

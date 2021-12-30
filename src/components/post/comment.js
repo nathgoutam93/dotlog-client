@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import * as ROUTES from '../../constants/routes';
 import { Link } from 'react-router-dom';
 import Header from './header';
-import Skeleton from './Skeleton';
+import Skeleton from '../commons/Skeleton';
 import { useIntersection } from '../../hooks/intersectionObserver';
 import { useFirestore } from '../../context/firestoreContext';
 

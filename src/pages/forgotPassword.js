@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState} from 'react';
 import { Link } from 'react-router-dom';
 import * as ROUTES from '../constants/routes';
 import { useAuth } from '../context/authContext';
@@ -14,25 +14,23 @@ export default function ForgotPassword() {
 
   const [loading, setLoading] = useState(false);
 
-  const handleReset = async (event) => {
+  const handleReset = (event) => {
     event.preventDefault();
 
     try {
       setError('');
       setLoading(true);
-      await resetPassword(emailAddress);
-      setMessage("Please check your email for further instructions")
-      setLoading(false);
+      resetPassword(emailAddress)
+      .then(()=>{
+        setMessage("Please check your email for further instructions")
+        setLoading(false);
+      })
     } catch (error) {
       setEmailAddress('');
       setError("Failed to rest password");
       setLoading(false);
     }
   };
-
-  useEffect(() => {
-    document.title = 'reset password - Dotlog';
-  }, []);
 
   return (
     <div className="w-full h-full p-4 flex flex-col justify-center items-center">

@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { useHistory } from 'react-router';
 import { Link } from 'react-router-dom';
 import * as ROUTES from '../constants/routes';
@@ -16,15 +16,16 @@ export default function Login() {
 
   const [loading, setLoading] = useState(false);
 
-  const handleLogin = async (event) => {
+  const handleLogin = (event) => {
     event.preventDefault();
 
     try {
       setError('');
       setLoading(true);
-      await login(emailAddress, password);
-      setLoading(false);
-      history.push(ROUTES.DASHBOARD);
+      login(emailAddress, password).then(()=>{
+        setLoading(false);
+        history.push(ROUTES.DASHBOARD);
+      });
     } catch (error) {
       setEmailAddress('');
       setPassword('');
@@ -32,10 +33,6 @@ export default function Login() {
       setLoading(false);
     }
   };
-
-  useEffect(() => {
-    document.title = 'Login - Dotlog';
-  }, []);
 
   return (
     <div className="w-full h-full p-4 flex flex-col justify-center items-center">

@@ -1,5 +1,5 @@
 import React from 'react';
-import Post from './post/index';
+import Post from '../post/index';
 
 export default function Timeline({ feeds }) {
   return (
