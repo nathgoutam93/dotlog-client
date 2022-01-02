@@ -16,20 +16,18 @@ export default function Login() {
 
   const [loading, setLoading] = useState(false);
 
-  const handleLogin = (event) => {
+  const handleLogin = async (event) => {
     event.preventDefault();
 
     try {
       setError('');
       setLoading(true);
-      login(emailAddress, password).then(()=>{
-        setLoading(false);
-        history.push(ROUTES.DASHBOARD);
-      });
+      await login(emailAddress, password);
+      setLoading(false);
+      history.push(ROUTES.DASHBOARD);
     } catch (error) {
-      setEmailAddress('');
-      setPassword('');
       setError(error.message);
+      setPassword('');
       setLoading(false);
     }
   };

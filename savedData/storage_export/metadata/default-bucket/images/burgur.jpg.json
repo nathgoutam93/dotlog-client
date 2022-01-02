@@ -1,0 +1,19 @@
+{
+  "name": "images/burgur.jpg",
+  "bucket": "default-bucket",
+  "contentType": "image/jpeg",
+  "metageneration": 1,
+  "generation": 1641125831252,
+  "storageClass": "STANDARD",
+  "etag": "someETag",
+  "contentDisposition": "inline",
+  "contentEncoding": "identity",
+  "downloadTokens": [
+    "f95fa186-4190-497c-9f4a-eea7afb53443"
+  ],
+  "timeCreated": "2022-01-02T12:17:11.251Z",
+  "updated": "2022-01-02T12:17:11.251Z",
+  "size": 110568,
+  "md5Hash": "XUGuQTADQIwrD3HcFd2ZqQ==",
+  "crc32c": "678163471"
+}

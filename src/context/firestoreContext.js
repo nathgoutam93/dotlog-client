@@ -262,9 +262,9 @@ export function FirestoreProvider({ children }) {
   }
 
   function createComment(userId, postId, comment, imgSrc) {
-    const ref = collection(db, 'posts', `${postId}`, 'comments');
+    const ref = doc(collection(db, 'posts', `${postId}`, 'comments'));
 
-    return addDoc(ref, {
+    return setDoc(ref, {
       userId: userId,
       postId: postId,
       commentId: ref.id,

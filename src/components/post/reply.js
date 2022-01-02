@@ -16,10 +16,8 @@ export default function Reply({ callback }) {
   const [showGif, setShowGif] = useState(false);
   const [showPicker, setShowPicker] = useState(false);
 
-  const Invalid = reply === '';
+  const Invalid = reply === '' && attchment === null;
   const [loading, setLoading] = useState(false);
-
-  const [progress, setProgress] = useState(0);
 
   const handleChange = (event) => {
     event.preventDefault();
@@ -54,7 +52,7 @@ export default function Reply({ callback }) {
     setShowGif(false);
   };
 
-  const handlePost = async (event) => {
+  const handlePost = (event) => {
     event.preventDefault();
 
     setLoading(true);
@@ -65,21 +63,21 @@ export default function Reply({ callback }) {
 
       uploadTask.on(
         'state_changed',
-        (snapshot) => {
-          setProgress((snapshot.bytesTransferred / snapshot.totalBytes) * 100);
-        },
+        ()=>{},
         (error) => {
           console.log(error.message);
         },
-        () => {
-          getDownloadURL(uploadTask.snapshot.ref).then((downloadURL = null) => {
-            try {
-              callback(userData.userId, reply, downloadURL);
-              setReply('');
-            } catch (e) {
-              console.log(e.message);
-            }
-          });
+        async () => {
+          const downloadURL = await getDownloadURL(uploadTask.snapshot.ref) || null;
+
+          try {
+            callback(userData.userId, reply, downloadURL);
+            setReply('');
+            setAttach(null);
+            setFile(null);
+          } catch (e) {
+            console.log(e.message);
+          }
         }
       );
     } else {
@@ -108,14 +106,6 @@ export default function Reply({ callback }) {
 
   return (
     <>
-      {!progress ? null : (
-        <div className="w-full h-1 text-xs flex bg-purple-200">
-          <div className="progress flex flex-col shadow-none text-center whitespace-nowrap text-white justify-center bg-purple-500">
-            <style>{`.progress{width: ${progress}% ; transition: width 0.3s}`}</style>
-          </div>
-        </div>
-      )}
-
       <form
         className="flex w-full p-2 justify-around bg-post-light dark:bg-post-dark"
         onSubmit={handlePost}

@@ -1,0 +1,19 @@
+{
+  "name": "users/paolo.smith",
+  "bucket": "default-bucket",
+  "contentType": "image/jpeg",
+  "metageneration": 1,
+  "generation": 1641122672181,
+  "storageClass": "STANDARD",
+  "etag": "someETag",
+  "contentDisposition": "inline",
+  "contentEncoding": "identity",
+  "downloadTokens": [
+    "2df08031-70bf-4905-aed5-35934efb27bd"
+  ],
+  "timeCreated": "2022-01-02T11:24:32.180Z",
+  "updated": "2022-01-02T11:24:32.180Z",
+  "size": 3360,
+  "md5Hash": "O3OuQEFWUQiDconKmh+tDg==",
+  "crc32c": "3625806166"
+}

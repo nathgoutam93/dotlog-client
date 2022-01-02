@@ -1,0 +1,19 @@
+{
+  "name": "users/nathgoutam93",
+  "bucket": "default-bucket",
+  "contentType": "image/jpeg",
+  "metageneration": 1,
+  "generation": 1641125699583,
+  "storageClass": "STANDARD",
+  "etag": "someETag",
+  "contentDisposition": "inline",
+  "contentEncoding": "identity",
+  "downloadTokens": [
+    "09498861-7c36-48cb-b330-a32fbb11ed62"
+  ],
+  "timeCreated": "2022-01-02T12:14:59.582Z",
+  "updated": "2022-01-02T12:14:59.582Z",
+  "size": 15353,
+  "md5Hash": "QW9ennBwzF4S3PF4F8YHVw==",
+  "crc32c": "2482193424"
+}

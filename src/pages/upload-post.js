@@ -20,7 +20,8 @@ export default function UploadPost() {
   const [showGif, setShowGif] = useState(false);
   const [showPicker, setShowPicker] = useState(false);
 
-  const Invalid = caption === '';
+  const Invalid = caption === '' && attchment === null;
+
   const [loading, setLoading] = useState(false);
 
   const [progress, setProgress] = useState(0);

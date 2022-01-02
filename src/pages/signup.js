@@ -20,7 +20,7 @@ export default function SignUp() {
   const passwordConfirmed = password === passwordConfirmation;
   const [loading, setLoading] = useState();
 
-  const handleSignUp = (event) => {
+  const handleSignUp = async (event) => {
     event.preventDefault();
 
     if (passwordConfirmed) {
@@ -28,18 +28,12 @@ export default function SignUp() {
       try {
         setError('');
         setLoading(true);
-
-        signup(emailAddress, password)
-        .then((userCredential) => {
-          const user = userCredential.user;
-          return createUser(user.uid, username, emailAddress)
-        })
-        .then(() => {
-          setLoading(false);
-          history.push(ROUTES.UPDATE_PROFILE);
-        });
+        const {user} =  await signup(emailAddress, password);
+        await createUser(user.uid, username, emailAddress)
+        setLoading(false);
+        history.push(ROUTES.UPDATE_PROFILE);
+        
       } catch (error) {
-        setEmailAddress('');
         setPassword('');
         setPasswordConfirm('');
         setError(error.message);

@@ -8,8 +8,8 @@ const hostname = window.location.hostname;
 
 const DOTLOG = hostname === "localhost" ? initializeApp({
     apiKey: "demo-key",
-    authDomain: "demo-auth",
-    projectId: "demo-project",
+    authDomain: "demo-test",
+    projectId: "demo-test",
     storageBucket: "default-bucket"
 }) : initializeApp(firebaseConfig); 
 

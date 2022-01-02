@@ -41,8 +41,8 @@ export default function PostView() {
           <Post post={post} />
           <Reply callback={handleComment} />
           {comments.length > 0 &&
-            comments.map((comment,index) => {
-              return <Comment key={index} comment={comment} />;
+            comments.map((comment) => {
+              return <Comment key={comment.commentId} comment={comment} />;
             })}
         </div>
       )}

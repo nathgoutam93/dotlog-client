@@ -58,7 +58,7 @@ export default function Header({
 
       <div className="w-full px-2">
         <Link to={`${ROUTES.PROFILE}/${userId}`}>
-          <span className="dark:text-white text-base mr-1 cursor-pointer">
+          <span className="dark:text-white text-base mr-1 cursor-pointer truncate">
             {fullName}
           </span>
 
