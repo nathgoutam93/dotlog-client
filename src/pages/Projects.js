@@ -1,9 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { Link, NavLink, Route, Switch, useRouteMatch } from 'react-router-dom';
 import { lazy, Suspense } from 'react';
 import * as ROUTES from '../constants/routes';
 import { useFirestore } from '../context/firestoreContext';
 import { useAuth } from '../context/authContext';
+import { useHeader } from '../context/headerContext';
 
 const Project = lazy(() => import('../pages/project'));
 const Explore = lazy(() => import('../components/projectTimeline'));
@@ -13,7 +14,15 @@ export default function Projects() {
   const [projects, setProjects] = useState([]);
 
   const { path, url } = useRouteMatch();
+  const { setCustomHeader } = useHeader()
 
+  
+  useEffect(()=>{
+    const customHeader = <p className="flex-1 text-base font-bold dark:text-white">Projects</p>
+
+    setCustomHeader(customHeader);
+  },[setCustomHeader])
+  
   return (
     <div className="flex h-screen">
       <div className="w-1/5 h-full p-2 overflow-y-scroll">

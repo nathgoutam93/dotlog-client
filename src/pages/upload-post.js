@@ -5,10 +5,13 @@ import { useFirestore } from '../context/firestoreContext';
 import { ref, uploadBytesResumable, getDownloadURL } from 'firebase/storage';
 import Gif from '../components/commons/gif';
 import Picker from 'emoji-picker-react';
+import { useHeader } from '../context/headerContext';
+import { useNavbar } from '../context/navbarContext';
 
 export default function UploadPost() {
-  const { userData } = useFirestore();
-  const { storage, createPost } = useFirestore();
+  const { userData, storage, createPost } = useFirestore();
+  const { setCustomHeader } = useHeader()
+  const { setShow } = useNavbar();
 
   const history = useHistory();
 
@@ -25,6 +28,7 @@ export default function UploadPost() {
   const [loading, setLoading] = useState(false);
 
   const [progress, setProgress] = useState(0);
+
 
   const handleChange = (event) => {
     event.preventDefault();
@@ -113,8 +117,15 @@ export default function UploadPost() {
     }
   }, [file]);
 
+  useEffect(()=>{
+    const customHeader = <p className="flex-1 text-base font-bold dark:text-white">Share post</p>
+
+    setCustomHeader(customHeader)
+    setShow(true);
+  },[setCustomHeader, setShow])
+
   return (
-    <div className="w-full h-full">
+    <div className="mt-16 w-full h-full">
       {!progress ? null : (
         <div className="w-full h-1 text-xs flex bg-purple-200">
           <div className="progress flex flex-col shadow-none text-center whitespace-nowrap text-white justify-center bg-purple-500">

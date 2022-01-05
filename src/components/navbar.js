@@ -2,19 +2,22 @@ import React from 'react';
 import * as ROUTES from '../constants/routes';
 import { Link, NavLink } from 'react-router-dom';
 import { useFirestore } from '../context/firestoreContext'
+import { useNavbar } from '../context/navbarContext';
 
-export default function Navbar({ show }) {
+export default function Navbar() {
   const { userData } = useFirestore()
+
+  const { show } = useNavbar();
 
   return (
     <>
       {userData && (
         <nav
           className={`fixed ${
-            show ? 'bottom-2' : '-bottom-20'
-          } mx-5 my-2 p-2 flex items-center justify-center rounded-3xl z-50 bg-dark`}
+            show ? 'bottom-0' : '-bottom-20'
+          } w-full p-2 flex items-center justify-around bg-dark z-50 lg:w-2/5`}
         >
-          <NavLink activeClassName={"activePage"} to={ROUTES.DASHBOARD} className="text-gray-600" exact>
+          <NavLink activeClassName={"activePage"} to={ROUTES.DASHBOARD} className="text-gray-700" exact>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               className="h-12 w-12 mr-4"
@@ -25,7 +28,7 @@ export default function Navbar({ show }) {
             </svg>
           </NavLink>
 
-          <NavLink activeClassName={"activePage"} to={ROUTES.PROJECTS} className="text-gray-600">
+          <NavLink activeClassName={"activePage"} to={ROUTES.PROJECTS} className="text-gray-700">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               className="h-12 w-12 mr-4 "
@@ -42,7 +45,7 @@ export default function Navbar({ show }) {
             </svg>
           </NavLink>
 
-          <NavLink activeClassName={"activePage"} to={ROUTES.NEW_POST} className="text-gray-600">
+          <NavLink activeClassName={"activePage"} to={ROUTES.NEW_POST} className="text-gray-700">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               className="h-12 w-12 mr-4"
@@ -59,7 +62,7 @@ export default function Navbar({ show }) {
             </svg>
           </NavLink>
 
-          <NavLink activeClassName={"activePage"} to={ROUTES.NOTIFICATION} className="text-gray-600">
+          <NavLink activeClassName={"activePage"} to={ROUTES.NOTIFICATION} className="text-gray-700">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               className="h-12 w-12 mr-4 "

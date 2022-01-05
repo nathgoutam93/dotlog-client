@@ -4,6 +4,7 @@ export const UPDATE_PROFILE = '/update-profile';
 export const DASHBOARD = '/';
 export const Post = '/post';
 export const MESSAGES = '/messages';
+export const CONVERSATION = '/conversation';
 export const PROFILE = '/profile';
 export const PROJECTS = '/projects';
 export const NOTIFICATION = '/notifications';

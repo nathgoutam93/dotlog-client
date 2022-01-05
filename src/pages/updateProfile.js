@@ -5,14 +5,18 @@ import * as ROUTES from '../constants/routes';
 import { useAuth } from '../context/authContext';
 import { useFirestore } from '../context/firestoreContext';
 import { ref, uploadBytesResumable, getDownloadURL } from 'firebase/storage';
-import InputField from '../components/commons/InputField';
 import ChipsWithIcon from '../components/commons/ChipsWithIcon';
 import Avatar from '../components/commons/avatar';
+import { useHeader } from '../context/headerContext';
+import { useNavbar } from '../context/navbarContext';
 
 export default function UpdateProfile() {
   const history = useHistory();
   const { currentUser } = useAuth();
   const { storage, userData, updateProfile } = useFirestore();
+
+  const { setCustomHeader } = useHeader();
+  const { setShow } = useNavbar();
 
   const [user, setUser] = useState(null);
 
@@ -126,8 +130,16 @@ export default function UpdateProfile() {
     }
   }, [file]);
 
-  return (
-    <div className="flex flex-col w-full items-center justify-center">
+  useEffect(()=>{
+
+    const customHeader = <p className="flex-1 text-base font-bold dark:text-white">Edit Profile</p>
+
+    setCustomHeader(customHeader)
+    setShow(true);
+  },[setCustomHeader, setShow])
+
+  return (  
+    <div className="mt-14 w-full flex flex-col items-center justify-center">
       {!progress ? null : (
         <div className="w-full h-1 text-xs flex bg-purple-200">
           <div className="progress flex flex-col shadow-none text-center whitespace-nowrap text-white justify-center bg-purple-500">
@@ -135,61 +147,64 @@ export default function UpdateProfile() {
           </div>
         </div>
       )}
-
-      <div className="flex w-full p-4 justify-around items-baseline">
-        <div
-          className="relative h-32 w-32 rounded-full cursor-pointer"
-          onClick={handleClick}
+      <div className='flex w-full p-4 justify-around items-baseline'>
+      <div
+        className="mt-4 relative h-32 w-32 rounded-full cursor-pointer"
+        onClick={handleClick}
+      >
+        <Avatar imgSrc={imgSrc} username={userData.username}/>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          className="absolute bottom-3 right-1 h-6 w-6 dark:text-white"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
         >
-          <Avatar imgSrc={imgSrc} username={userData.username}/>
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            className="absolute bottom-3 right-1 h-6 w-6 dark:text-white"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"
-            />
-          </svg>
-          <input
-            className="hidden"
-            aria-label="profile pic"
-            type="file"
-            accept="image/png, image/jpeg"
-            onChange={handleFile}
-            ref={filePicker}
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth={2}
+            d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"
           />
-        </div>
-        <button
-          disabled={isInvalid || loading}
-          type="submit"
-          onClick={handleUpdate}
-          className="px-2 py-1 border-black rounded-full dark:text-white border dark:border-white"
-        >
-          save changes
-        </button>
+        </svg>
+        <input
+          className="hidden"
+          aria-label="profile pic"
+          type="file"
+          accept="image/png, image/jpeg"
+          onChange={handleFile}
+          ref={filePicker}
+        />
+      </div>
+      <button 
+        disabled={isInvalid || loading}
+        onClick={handleUpdate}
+        className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full'>
+        Save changes
+      </button>
       </div>
       <form className="w-full p-4" onSubmit={handleUpdate} method="POST">
-        <InputField
-          label="Name"
-          inputPlaceholder="your full name"
-          inputValue={fullName}
-          callback={setFullName}
-        />
-
-        <InputField
-          label="Bio"
-          inputPlaceholder="about"
-          inputValue={about}
-          callback={setAbout}
-        />
-
-        <div className="w-full mb-2 p-2 border border-gray-800 rounded">
+        <div className='relative mb-4 p-2 flex flex-col border border-gray-500 rounded-xl'>
+          <label className="absolute -top-2 bg-post-light dark:bg-post-dark dark:text-white text-xs">Name</label>
+          <input
+            type="text"
+            placeholder="your full Name"
+            className="p-2 bg-transparent text-sm dark:text-white"
+            onChange={(e)=>setFullName(e.target.value)}
+            value={fullName}
+          />
+        </div>
+        <div className='relative mb-4 p-2 flex flex-col border border-gray-500 rounded-xl'>
+          <label className="absolute -top-2 bg-post-light dark:bg-post-dark dark:text-white text-xs">Bio</label>
+          <textarea
+          placeholder='let us know you'
+          className='p-2 bg-transparent text-sm dark:text-white'
+          onChange={(e)=>setAbout(e.target.value)}
+          value={about}
+          />
+        </div>
+  
+        <div className="w-full mb-2 p-2">
           <label className="dark:text-white text-xs">Interests</label>
           <div className="flex items-center mb-1">
             <input

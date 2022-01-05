@@ -48,7 +48,7 @@ export default function Post({ post }) {
           )}
 
           <Link to={`${ROUTES.Post}/${post.postId}`}>
-            <p className="dark:text-white text-sm my-1 px-4">{post.caption}</p>
+            <p className="dark:text-white text-sm mb-2 px-4">{post.caption}</p>
 
             {post.imgSrc && (
               <div className="p-2 items-center justify-center" ref={imgRef}>

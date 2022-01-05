@@ -25,5 +25,9 @@ service cloud.firestore {
     allow read, write:
     if request.auth != null;
     }
+    match /conversations/{document=**}{
+      allow read, write:
+      if request.auth != null;
+    }
   }
 }

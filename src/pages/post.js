@@ -6,9 +6,14 @@ import { useFirestore } from '../context/firestoreContext';
 import Comment from '../components/post/comment';
 import { onSnapshot, doc } from '@firebase/firestore';
 import { db } from '../lib/firebase';
+import { useHeader } from '../context/headerContext';
+import { useNavbar } from '../context/navbarContext';
 
 export default function PostView() {
   const { postId } = useParams();
+
+  const { setCustomHeader } = useHeader()
+  const { setShow } = useNavbar()
 
   const { doComment, getComments } = useFirestore();
   const [post, setPost] = useState(null);
@@ -34,10 +39,16 @@ export default function PostView() {
     };
   }, [postId, getComments]);
 
+  useEffect(()=>{
+    const customHeader = <span className='flex-1'></span>
+    setCustomHeader(customHeader)
+    setShow(true);
+  },[setCustomHeader,setShow])
+
   return (
     <>
       {post && (
-        <div className="w-full h-full">
+        <div className="w-full h-full mt-16">
           <Post post={post} />
           <Reply callback={handleComment} />
           {comments.length > 0 &&

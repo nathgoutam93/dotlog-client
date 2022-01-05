@@ -50,13 +50,13 @@ export default function Header({
     <div className="flex p-2 items-center">
       <Link to={`${ROUTES.PROFILE}/${userId}`}>
         <img
-          className="w-8 h-8 object-cover rounded-full cursor-pointer"
+          className="h-8 w-8 object-cover rounded-full cursor-pointer"
           src={userImg}
           alt=""
         />
       </Link>
 
-      <div className="w-full px-2">
+      <div className="flex flex-col flex-1 px-2">
         <Link to={`${ROUTES.PROFILE}/${userId}`}>
           <span className="dark:text-white text-base mr-1 cursor-pointer truncate">
             {fullName}
@@ -75,6 +75,9 @@ export default function Header({
             })}
         </span>
       </div>
+      <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 dark:text-light" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 12h.01M12 12h.01M19 12h.01M6 12a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0z" />
+      </svg>
     </div>
   );
 }

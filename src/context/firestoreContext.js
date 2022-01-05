@@ -299,6 +299,112 @@ export function FirestoreProvider({ children }) {
     createComment(userId, postId, comment, imgSrc);
   }
 
+  async function getConversation(conversationId){
+    const ref = doc(db,'conversations',`${conversationId}`)
+
+    const conversation = await getDoc(ref);
+
+    return conversation.data()
+  }
+
+  async function getConversationId(userId1,userId2){
+
+    let conversationId = null;
+
+    const q1 = query(
+      collection(db, 'conversations'),
+      where('user1','==',`${userId1}`),
+      where('user2','==',`${userId2}`),
+      limit(1)
+    );
+
+    const querySnapshot = await getDocs(q1);
+
+    querySnapshot.docs.forEach((doc) => {
+      if(doc.exists()){
+        conversationId = doc.id
+      }
+    });
+
+    if(!conversationId){
+      const q2 = query(
+        collection(db, 'conversations'),
+        where('user1','==',`${userId2}`),
+        where('user2','==',`${userId1}`),
+        limit(1)
+      )
+  
+      const querySnapshot2 = await getDocs(q2);
+  
+      querySnapshot2.docs.forEach((doc)=>{
+        if(doc.exists()){
+          conversationId = doc.id
+        }
+      })
+    }
+  
+    return conversationId
+  }
+
+  async function createConversation(userId1,userId2){
+
+    const ref = doc(collection(db,'converation'));
+
+    addDoc(ref, {
+      conversationId: ref.id,
+      user1: userId1,
+      user2: userId2,
+      dateCreated: serverTimestamp(),
+    });
+
+    return ref.id
+  }
+
+  async function createMessage(conversationId, userId, message, imgSrc){
+    const ref = doc(collection(db, 'conversations', `${conversationId}`, 'Messages'));
+
+    return setDoc(ref, {
+      userId: userId,
+      messageId: ref.id,
+      message: message,
+      imgSrc: imgSrc,
+      dateCreated: serverTimestamp(),
+    });
+  }
+
+  async function getConversations(userId){
+
+    const conversations = []
+
+    const q = query(
+      collection(db,'conversations'),
+      where('user1','==',`${userId}`)
+    )
+
+    const querySnapshot = await getDocs(q);
+
+    querySnapshot.forEach((doc)=>{
+      const conversationId = doc.id;
+      const otherUserId = doc.data().user1 === userId ? doc.data().user2 : doc.data().user1;
+      conversations.push({conversationId, otherUserId})
+    })
+
+    const q2 = query(
+      collection(db,'conversations'),
+      where('user2','==',`${userId}`)
+    )
+
+    const querySnapshot2 = await getDocs(q2);
+
+    querySnapshot2.forEach((doc)=>{
+      const conversationId = doc.id
+      const otherUserId = doc.data().user1 === userId ? doc.data().user2 : doc.data().user1;
+      conversations.push({conversationId, otherUserId})
+    })
+
+    return conversations
+  }
+
   const value = {
     storage,
     userData,
@@ -318,6 +424,11 @@ export function FirestoreProvider({ children }) {
     isFollowing,
     follow,
     unfollow,
+    createConversation,
+    getConversationId,
+    getConversation,
+    createMessage,
+    getConversations,
   };
 
   return (
