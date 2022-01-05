@@ -26,8 +26,10 @@ service cloud.firestore {
     if request.auth != null;
     }
     match /conversations/{document=**}{
-      allow read, write:
-      if request.auth != null;
+      allow read:
+      if request.auth != null && request.auth.uid == resource.data.user1 || resource.data.user2;
+      allow write:
+      if request.auth != null && request.auth.uid == request.resource.data.user1 || request.resource.data.user2;
     }
   }
 }

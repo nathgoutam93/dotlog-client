@@ -1,5 +1,4 @@
-import React from 'react';
-import { useEffect } from 'react/cjs/react.development';
+import React, { useEffect } from 'react';
 import { useHeader } from '../context/headerContext';
 import { useNavbar } from '../context/navbarContext';
 
