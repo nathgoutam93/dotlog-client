@@ -1,11 +1,11 @@
 import React from 'react';
 import * as ROUTES from '../constants/routes';
 import { Link, NavLink } from 'react-router-dom';
-import { useFirestore } from '../context/firestoreContext'
+import { useFirestore } from '../context/firestoreContext';
 import { useNavbar } from '../context/navbarContext';
 
 export default function Navbar() {
-  const { userData } = useFirestore()
+  const { userData } = useFirestore();
 
   const { show } = useNavbar();
 
@@ -17,7 +17,12 @@ export default function Navbar() {
             show ? 'bottom-0' : '-bottom-20'
           } w-full p-2 flex items-center justify-around bg-dark z-50 lg:w-2/5`}
         >
-          <NavLink activeClassName={"activePage"} to={ROUTES.DASHBOARD} className="text-gray-700" exact>
+          <NavLink
+            activeClassName={'activePage'}
+            to={ROUTES.DASHBOARD}
+            className="text-gray-700"
+            exact
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               className="h-12 w-12 mr-4"
@@ -28,7 +33,11 @@ export default function Navbar() {
             </svg>
           </NavLink>
 
-          <NavLink activeClassName={"activePage"} to={ROUTES.PROJECTS} className="text-gray-700">
+          <NavLink
+            to={ROUTES.MESSAGES}
+            activeClassName={'activePage'}
+            className="text-gray-700"
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               className="h-12 w-12 mr-4 "
@@ -40,12 +49,16 @@ export default function Navbar() {
                 strokeLinecap="round"
                 strokeLinejoin="round"
                 strokeWidth="2"
-                d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"
+                d="M7 8h10M7 12h4m1 8l-4-4H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-3l-4 4z"
               />
             </svg>
           </NavLink>
 
-          <NavLink activeClassName={"activePage"} to={ROUTES.NEW_POST} className="text-gray-700">
+          <NavLink
+            activeClassName={'activePage'}
+            to={ROUTES.NEW_POST}
+            className="text-gray-700"
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               className="h-12 w-12 mr-4"
@@ -62,7 +75,11 @@ export default function Navbar() {
             </svg>
           </NavLink>
 
-          <NavLink activeClassName={"activePage"} to={ROUTES.NOTIFICATION} className="text-gray-700">
+          <NavLink
+            activeClassName={'activePage'}
+            to={ROUTES.NOTIFICATION}
+            className="text-gray-700"
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               className="h-12 w-12 mr-4 "
@@ -84,7 +101,10 @@ export default function Navbar() {
               src={userData.imgSrc}
               className="w-12 h-12 object-cover rounded-full"
               alt=""
-              onError={(e)=>{e.target.onerror = null; e.target.src=`https://avatars.dicebear.com/api/initials/${userData.username}.svg`}}
+              onError={(e) => {
+                e.target.onerror = null;
+                e.target.src = `https://avatars.dicebear.com/api/initials/${userData.username}.svg`;
+              }}
             />
           </Link>
         </nav>

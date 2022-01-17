@@ -6,12 +6,4 @@
   .activePage {
     color: #fff;
   }
-
-  .activeTab{
-    color: black;
-  }
-
-  .dark .activeTab{
-    color: white;
-  }
 }

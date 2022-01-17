@@ -348,7 +348,7 @@ export function FirestoreProvider({ children }) {
 
   async function createConversation(userId1,userId2){
 
-    const ref = collection(db,'conversations');
+    const ref = doc(collection(db,'conversations'));
 
     addDoc(ref, {
       conversationId: ref.id,
