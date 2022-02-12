@@ -1,8 +1,6 @@
 # Dotlog
 
-- Dotlog helps to connect people around the globe showing off their skills.
-
-- Dotlog helps individuals and enterprises share publicly to everyone or to a small groups of peoples about the progress they are making on their projects.
+- Dotlog helps to connect people around the globe.
 
 Check out the website: [Dotlog](http://dotlog-f5dc5.web.app/)
 
