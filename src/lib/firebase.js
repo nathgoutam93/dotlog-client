@@ -2,16 +2,26 @@ import { initializeApp } from 'firebase/app';
 import { getAuth, connectAuthEmulator } from 'firebase/auth';
 import { getStorage, connectStorageEmulator } from 'firebase/storage';
 import { getFirestore, connectFirestoreEmulator } from 'firebase/firestore';
-import firebaseConfig from '../firebaseConfig';
+
+const firebaseConfig = {
+  apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
+  authDomain: process.env.REACT_APP_FIREBASE_AUTH_DOMAIN,
+  projectId: process.env.REACT_APP_FIREBASE_PROJECT_ID,
+  storageBucket: process.env.REACT_APP_FIREBASE_STORAGE_BUCKET,
+  appId: process.env.REACT_APP_FIREBASE_APP_ID,
+};
 
 const hostname = window.location.hostname;
 
-const DOTLOG = hostname === "localhost" ? initializeApp({
-    apiKey: "demo-key",
-    authDomain: "demo-test",
-    projectId: "demo-test",
-    storageBucket: "default-bucket"
-}) : initializeApp(firebaseConfig); 
+const DOTLOG =
+  hostname === 'localhost'
+    ? initializeApp({
+        apiKey: 'demo-key',
+        authDomain: 'demo-test',
+        projectId: 'demo-test',
+        storageBucket: 'default-bucket',
+      })
+    : initializeApp(firebaseConfig);
 
 export const auth = getAuth(DOTLOG);
 
@@ -19,8 +29,8 @@ export const db = getFirestore(DOTLOG);
 
 export const storage = getStorage(DOTLOG);
 
-if(hostname === "localhost"){
-    connectAuthEmulator(auth, "http://localhost:9099");
-    connectFirestoreEmulator(db, 'localhost', 8188)
-    connectStorageEmulator(storage, 'localhost', 9199)
+if (hostname === 'localhost') {
+  connectAuthEmulator(auth, 'http://localhost:9099');
+  connectFirestoreEmulator(db, 'localhost', 8188);
+  connectStorageEmulator(storage, 'localhost', 9199);
 }
